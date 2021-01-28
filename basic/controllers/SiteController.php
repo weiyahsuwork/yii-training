@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
@@ -132,6 +133,16 @@ class SiteController extends Controller
     public function actionSay($message = 'Hello')
     {
         // return $this->render('say', ['message' => $message]);
-        echo 'say  '.$message;
+        // echo 'say  '.$message;
+        // 轉跳到網頁中的特定地方 ， 像是有時候在導向的時候會到該網址中所指定的位置
+        // echo Url::to(['post/view', 'id' => 100, '#' => 'content']);
+        // 設定網頁的別名
+        // Yii::setAlias('@example', 'http://example.com/');
+        // echo Url::to('@example');
+
+        // echo Url::canonical();
+
+        // Url::remember();
+        // echo Url::previous();
     }
 }
