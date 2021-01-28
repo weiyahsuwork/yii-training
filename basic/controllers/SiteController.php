@@ -145,4 +145,46 @@ class SiteController extends Controller
         // Url::remember();
         // echo Url::previous();
     }
+
+    public function actionList(){
+        // 返回多行. 每行都是列名和值的关联数组.
+        // 如果该查询没有结果则返回空数组
+        $news = Yii::$app->db->createCommand('SELECT * FROM news WHERE id=:id')
+                    ->bindValue(':id', '1')
+                    ->queryAll();
+        echo '<pre>';
+        echo '$news = '.var_export($news)."\n";
+
+        // 新增
+        $db = Yii::$app->db;
+        $transaction = $db->beginTransaction();
+        try {
+            $db->createCommand("INSERT INTO `news` (`id`, `title`, `content`, `createAt`, `createBy`, `modifyAt`, `modifyBy`, `deleteAt`, `deleteBy`)
+            VALUES (NULL, 'BCD2', 'BCD2', '2021-01-28 15:31:35', '89', NULL, NULL, NULL, NULL)")
+            ->execute();
+            
+            $transaction->commit();
+        } catch(\Exception $e) {
+        // 回滾
+            $transaction->rollBack();
+            throw $e;
+        } catch(\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+
+        // 查詢
+        $query = new \yii\db\Query();
+        $rows = $query->select(['id', 'title'])
+            ->from('news')
+            ->all();
+
+        // join 查詢
+        $query = new \yii\db\Query();
+        $rows = $query->select(['news.id', 'news.title', 'post.id AS post'  , 'post.body'])
+            ->from('news')
+            ->join('LEFT JOIN', 'post', 'post.newsid = news.id')
+            ->all();
+
+    }
 }
