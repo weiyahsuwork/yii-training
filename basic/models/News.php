@@ -16,6 +16,8 @@ use Yii;
  * @property string|null $modifyBy
  * @property string|null $deleteAt
  * @property string|null $deleteBy
+ *
+ * @property Post[] $posts
  */
 class News extends \yii\db\ActiveRecord
 {
@@ -57,5 +59,24 @@ class News extends \yii\db\ActiveRecord
             'deleteAt' => 'Delete At',
             'deleteBy' => 'Delete By',
         ];
+    }
+
+    /**
+     * Gets query for [[Posts]].
+     *
+     * @return \yii\db\ActiveQuery|PostQuery
+     */
+    public function getPosts()
+    {
+        return $this->hasMany(Post::className(), ['newsid2' => 'id']);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @return NewsQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new NewsQuery(get_called_class());
     }
 }
