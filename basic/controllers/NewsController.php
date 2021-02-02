@@ -9,19 +9,21 @@ use \yii\db\Query;
 class NewsController extends ActiveController
 {
     public $modelClass = 'app\models\News';
+    
 
-    public function actions()
-    {
-        $actions = parent::actions();
 
-        // 使用 "prepareDataProvider()" 方法自定义数据 provider 
-        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+    // public function actions()
+    // {
+    //     $actions = parent::actions();
 
-        return $actions;
-    }
+    //     // 使用 "prepareDataProvider()" 方法自定义数据 provider 
+    //     $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
 
-    public function prepareDataProvider()
-    {
+    //     return $actions;
+    // }
+
+    // public function prepareDataProvider()
+    // {
         // JOIN
         // $query = new Query();
         // $rows = $query->select(['news.id', 'news.title', 'post.id AS post'  , 'post.body'])
@@ -40,8 +42,8 @@ class NewsController extends ActiveController
         // ->all();
 
         // 條件
-        $rows = Yii::$app->db->createCommand('SELECT * FROM news WHERE id == (SELECT newsid FROM post)')
-                ->queryAll();
-        return $rows;
-    }
+    //     $rows = Yii::$app->db->createCommand('SELECT * FROM news WHERE id == (SELECT newsid FROM post)')
+    //             ->queryAll();
+    //     return $rows;
+    // }
 }
