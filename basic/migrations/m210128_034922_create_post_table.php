@@ -18,6 +18,8 @@ class m210128_034922_create_post_table extends Migration
             'body' => $this->text(),
             'newsid' => $this->string()
         ]);
+        $this->createIndex('gt_id', 'post', 'newsid');
+        $this->addForeignKey('newsid', 'post', 'newsid', 'news', 'id');
     }
 
     /**

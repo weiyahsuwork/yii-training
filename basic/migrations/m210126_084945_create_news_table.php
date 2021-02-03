@@ -22,6 +22,7 @@ class m210126_084945_create_news_table extends Migration
             'modifyBy' => $this->string(20),
             'deleteAt' => $this->dateTime(),
             'deleteBy' => $this->string(20),
+            'isDelete' => $this->boolean()->defaultValue(false)->notNull(),
         ]);
 
         $this->insert('{{%news}}', [
