@@ -3,20 +3,20 @@
 namespace app\models;
 
 /**
- * This is the ActiveQuery class for [[News]].
+ * This is the ActiveQuery class for [[Post]].
  *
- * @see News
+ * @see Post
  */
-class NewsQuery extends \yii\db\ActiveQuery
+class PosrQuery extends \yii\db\ActiveQuery
 {
-    public function active()
+    /*public function active()
     {
-        return $this->andWhere('isDelete=1');
-    }
+        return $this->andWhere('[[status]]=1');
+    }*/
 
     /**
      * {@inheritdoc}
-     * @return News[]|array
+     * @return Post[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class NewsQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return News|array|null
+     * @return Post|array|null
      */
     public function one($db = null)
     {
