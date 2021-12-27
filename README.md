@@ -1,1 +1,1 @@
-# yii-training
+# ci-training
